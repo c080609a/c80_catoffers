@@ -4,6 +4,7 @@ class C80CatoffersCreateCategories < ActiveRecord::Migration
       t.integer :ord
       t.string :title
       t.string :slug
+      t.references :parent_category, index: true
       t.text :desc
 
       t.timestamps null: false

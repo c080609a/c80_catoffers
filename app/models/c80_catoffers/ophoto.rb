@@ -1,0 +1,8 @@
+module C80Catoffers
+  class Ophoto < ActiveRecord::Base
+
+    belongs_to :offer
+    mount_uploader :image, OphotoUploader
+  end
+
+end
