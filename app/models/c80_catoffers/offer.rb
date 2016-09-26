@@ -23,6 +23,17 @@ module C80Catoffers
       [:title] + Array.new(6) {|index| [:title, index+2]}
     end
 
+    def has_category?
+      self.categories.count > 0
+    end
+
+    def category
+      res = nil
+      if self.has_category?
+        res = self.categories.first
+      end
+      res
+    end
 
   end
 
