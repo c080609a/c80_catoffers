@@ -22,7 +22,7 @@
       </div>
     </div>
 
-    <div class="bottom">
+    <div class="bottom count_<%=frames.count%>"> <%# класс count_N добавлен для того, чтобы можно было скрыть мелкую навигационную галерею, состоящую из одного фрейма %>
       <div class="nav_gallery_wrapper" id="offer_gallery_nav"> <%# offer_gallery_nav только для того добавлен, чтобы запустить slick в этом контейнере (asNavFor: '#offer_gallery') %>
         <% frames.each do |frame| %>
             <div>

@@ -5,6 +5,15 @@
   div.left {
     float: left;
     /* ширина и высота задаётся с помощью custom css в хост приложении */
+
+    /* скроем навигационную галерею, если в ней один элемент */
+    div.bottom {
+      &.count_1 {
+        height: 0 !important;
+        overflow: hidden;
+      }
+    }
+
   }
 
   div.right {
