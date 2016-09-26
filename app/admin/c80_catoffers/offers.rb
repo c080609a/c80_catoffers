@@ -26,12 +26,12 @@ ActiveAdmin.register C80Catoffers::Offer, as: 'Offer' do
     column :short_desc
     column :ophoto do |offer|
       if offer.ophotos.count > 0
-        link_to image_tag(offer.ophotos.first.image.thumb_fit, style: 'width:150px;'), offer.ophotos.first.image.url, target: '_blank'
+        link_to image_tag(offer.ophotos.first.image.thumb_preview, style: 'width:150px;'), offer.ophotos.first.image.url, target: '_blank'
       end
     end
-    column :desc do |offer|
-      offer.desc.html_safe if offer.desc.present?
-    end
+    # column :desc do |offer|
+    #   offer.desc.html_safe if offer.desc.present?
+    # end
     actions
   end
 
@@ -57,7 +57,7 @@ ActiveAdmin.register C80Catoffers::Offer, as: 'Offer' do
       f.has_many :ophotos, :allow_destroy => true do |gp|
         gp.input :image,
                  :as => :file,
-                 :hint => image_tag(gp.object.image.thumb_fit)
+                 :hint => image_tag(gp.object.image.thumb_preview)
       end
 
     end

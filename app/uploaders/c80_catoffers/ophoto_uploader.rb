@@ -1,19 +1,22 @@
 module C80Catoffers
-  # грузит картинку акции
+
+  # грузит картинку услуги
   class OphotoUploader < BaseFileUploader
 
     process :resize_to_limit => [1024,768]
 
-    version :thumb_fill do
-      process :resize_to_fill => [150,150]
+    version :thumb_big_one do
+      p = C80Catoffers::Prop.first
+      process :resize_to_fill => [p.big_one_width, p.big_one_height]
     end
 
-    version :thumb_fit do
-      process :resize_to_fit => [150,150]
+    version :thumb_preview do
+      p = C80Catoffers::Prop.first
+      process :resize_to_fill => [p.preview_width, p.preview_height]
     end
 
     def store_dir
-      "uploads/oimages"
+      'uploads/oimages'
     end
 
   end

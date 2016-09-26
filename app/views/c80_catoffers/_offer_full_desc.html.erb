@@ -1,0 +1,61 @@
+<div class="offer_full_desc skin_default">
+
+  <div class="left">
+
+    <div class="top">
+      <div class="big_gallery_wrapper" id="offer_gallery"> <%# offer_gallery только для того добавлен, чтобы связать slick между собой (asNavFor: '#offer_gallery',) %>
+        <% frames.each do |frame| %>
+            <div>
+
+              <%= link_to image_tag('',
+                                    :alt => image_alt,
+                                    :data => {
+                                            :lazy => image_path(frame.image.thumb_big_one)
+                                    }
+                          ),
+                          image_path(frame.image),
+                          :title => image_alt
+              %>
+
+            </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <div class="nav_gallery_wrapper" id="offer_gallery_nav"> <%# offer_gallery_nav только для того добавлен, чтобы запустить slick в этом контейнере (asNavFor: '#offer_gallery') %>
+        <% frames.each do |frame| %>
+            <div>
+
+              <%= image_tag('',
+                            :alt => image_alt,
+                            :data => {
+                                    :lazy => image_path(frame.image.thumb_preview)
+                            }
+                  )
+              %>
+
+            </div>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="right">
+    <%= desc.html_safe if desc.present? %>
+    <p class="price"><%= price %></p>
+    <div id="row_button">
+      <%= link_to order_button_label,
+                  "#",
+                  :title => order_button_label,
+                  :class => 'c80_order_invoking_btn',
+                  :data => {
+                          :comment_text => predefined_text_in_order_form,
+                          :subj_id => subj_id
+                  }
+      %>
+    </div>
+  </div>
+
+</div>
