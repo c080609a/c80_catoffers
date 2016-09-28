@@ -20,6 +20,7 @@ module C80Catoffers
 
     end
 
+    # выдать текстовый список предложений из указанной категории
     def render_offers_list_by_cat(category_tag)
 
       offers = C80Catoffers::Offer.joins(:categories).where(:c80_catoffers_categories => {:slug => category_tag})
