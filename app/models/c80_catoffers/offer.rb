@@ -10,6 +10,7 @@ module C80Catoffers
                                   },
                                   :allow_destroy => true
 
+    scope :def_order, -> {order(:created_at => :desc)}
 
     has_and_belongs_to_many :categories
 
