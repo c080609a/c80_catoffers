@@ -13,6 +13,7 @@ module C80Catoffers
     scope :def_order, -> {order(:created_at => :desc)}
 
     has_and_belongs_to_many :categories
+    has_and_belongs_to_many :props
 
     extend FriendlyId
     friendly_id :title, use: :slugged

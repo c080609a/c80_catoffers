@@ -11,6 +11,7 @@ ActiveAdmin.register C80Catoffers::Offer, as: 'Offer' do
                 :short_desc,
                 :desc,
                 :ophotos_attributes => [:id, :image, :_destroy],
+                :prop_ids => [],
                 :category_ids => []
 
   batch_action :destroy, false
