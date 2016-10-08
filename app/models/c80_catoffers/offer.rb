@@ -36,6 +36,13 @@ module C80Catoffers
       res
     end
 
+    # добавил возможность получить предложения, которым не назначена категория
+    def self.without_category
+      habtm_table = Arel::Table.new(:c80_catoffers_categories_offers)
+      join_table_with_condition = habtm_table.project(habtm_table[:offer_id])
+      where(Offer.arel_table[:id].not_in(join_table_with_condition))
+    end
+
   end
 
 end
