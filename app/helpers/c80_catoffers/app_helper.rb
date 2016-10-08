@@ -25,9 +25,29 @@ module C80Catoffers
 
       offers = C80Catoffers::Offer.joins(:categories).where(:c80_catoffers_categories => {:slug => category_tag})
 
-      render :partial => 'c80_catoffers/offers_list',
+      render :partial => 'c80_catoffers/offers_list_by_cat',
              :locals => {
                  list: offers
+             }
+
+    end
+
+    def render_offers_list_grouped
+
+      # результат соберём тут
+      res = []
+
+      # сначала выведем предложения без категории
+      res << { cat_title: nil, offers: Offer.without_category }
+
+      # затем выведем предложения с категориями
+      Category.all.each do |cat|
+        res << { cat_title: cat.title, offers: cat.offers }
+      end
+
+      render :partial => 'c80_catoffers/offers_list_grouped',
+             :locals => {
+                 list: res
              }
 
     end
