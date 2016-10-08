@@ -37,10 +37,11 @@ div.offer_list_iconed {
 
 
       li {
+        margin-bottom: 5px;
 
         /* иконка категории в ссылке */
         a.lazy-image-wrapper {
-          margin-bottom: 5px;
+
           img {
 
           }
@@ -50,6 +51,24 @@ div.offer_list_iconed {
         /* название категории */
         a.title {
           padding-left: 15px;
+          width: calc(100% - 80px);
+        }
+
+      }
+
+    }
+
+  }
+
+  &.list_count_0 {
+
+    ul {
+
+      li {
+        background-color: #dfffe4;
+
+        a.lazy-image-wrapper {
+          background-color: #e2dfff !important;
         }
 
       }

@@ -7,6 +7,7 @@ C80Catoffers::Prop.create!({
                                preview_height:164, # NOTE:: [x090] синхронизировано с css
                                big_one_width:621, # NOTE:: [x090] синхронизировано с css
                                big_one_height: 377, # NOTE:: [x090] синхронизировано с css
-                               thumb_sm_width:80, # NOTE:: [x090] синхронизировано с css
-                               thumb_sm_height: 50 # NOTE:: [x090] синхронизировано с css
+                               thumb_sm_width:80,
+                               thumb_sm_height: 50,
+                               positions_count: 4
                            })

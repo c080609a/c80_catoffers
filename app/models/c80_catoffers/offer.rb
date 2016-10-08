@@ -44,6 +44,11 @@ module C80Catoffers
       where(Offer.arel_table[:id].not_in(join_table_with_condition))
     end
 
+    # выдать список тех предложений, которые должны выводиться в виджете
+    def self.all_widgeted
+      self.joins(:props)
+    end
+
     def ophoto_thumb_sm
       res = ''
       if ophotos.count > 0

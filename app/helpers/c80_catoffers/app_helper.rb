@@ -55,11 +55,26 @@ module C80Catoffers
     # выведем линейный список категорий с иконками
     def render_offers_list_iconed(css_style:'default')
 
-      # список категорий
-      list = Offer.all.def_order
+      # свойства модуля
+      p = Prop.first
+
+      # список категорий, которые надо вывести в виджете
+      list = Offer.all_widgeted.def_order
+
+      # сколько должно быть позиций?
+      positions_count = p.positions_count
+      # Rails.logger.debug "[TRACE] positions_count: #{positions_count}; list.count: #{list.count}"
+
+      # если всего в списке меньше, чем надо - добьём список слотами
+      if list.count < positions_count
+        delta = positions_count - list.count
+        delta.times do |i|
+          # Rails.logger.debug "[TRACE] Offer.new"
+          list << Offer.new({ title: '' })
+        end
+      end
 
       # чтобы вёрстка не прыгала - зафиксируем размер картинки
-      p = C80Catoffers::Prop.first
       w = p.thumb_sm_width
       h = p.thumb_sm_height
 

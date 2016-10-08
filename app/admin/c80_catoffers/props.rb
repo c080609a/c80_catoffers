@@ -6,7 +6,8 @@ ActiveAdmin.register C80Catoffers::Prop, as: 'Prop' do
        priority: 3,
        parent: 'Услуги' # TODO_MY:: название пункта меню перенесести в параметры в базу
 
-  permit_params :offer_ids => []
+  permit_params :positions_count,
+                :offer_ids => []
 
   batch_action :destroy, false
 
@@ -16,13 +17,14 @@ ActiveAdmin.register C80Catoffers::Prop, as: 'Prop' do
 
   index do
     # selectable_column
-    column :offers do |prop|
+    column 'Список который выводится в виджете' do |prop|
       res = ''
       prop.offers.map do |offer|
         res += "<li>#{offer.title}</li>"
       end
       "<ul>#{res}</ul>".html_safe
     end
+    column :positions_count
     actions
   end
 
@@ -32,6 +34,7 @@ ActiveAdmin.register C80Catoffers::Prop, as: 'Prop' do
 
       f.input :offers,
               :as => :check_boxes
+      f.input :positions_count
 
     end
 
