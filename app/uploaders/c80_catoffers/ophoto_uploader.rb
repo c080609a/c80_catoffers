@@ -15,6 +15,11 @@ module C80Catoffers
       process :resize_to_fill => [p.preview_width, p.preview_height]
     end
 
+    version :thumb_sm do
+      p = C80Catoffers::Prop.first
+      process :resize_to_fill => [p.thumb_sm_width, p.thumb_sm_height]
+    end
+
     def store_dir
       'uploads/oimages'
     end

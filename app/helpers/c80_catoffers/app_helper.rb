@@ -52,5 +52,27 @@ module C80Catoffers
 
     end
 
+    # выведем линейный список категорий с иконками
+    def render_offers_list_iconed(css_style:'default')
+
+      # список категорий
+      list = Offer.all.def_order
+
+      # чтобы вёрстка не прыгала - зафиксируем размер картинки
+      p = C80Catoffers::Prop.first
+      w = p.thumb_sm_width
+      h = p.thumb_sm_height
+
+      render :partial => 'c80_catoffers/offers_list_iconed',
+             :locals => {
+                 list: list,
+                 css_style_for_block: css_style,
+                 css_for_a: "width:#{w}px;height:#{h}px",
+                 css_for_title: "height:#{h}px;line-height:#{h}px"
+             }
+
+
+    end
+
   end
 end

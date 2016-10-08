@@ -43,6 +43,14 @@ module C80Catoffers
       where(Offer.arel_table[:id].not_in(join_table_with_condition))
     end
 
+    def ophoto_thumb_sm
+      res = ''
+      if ophotos.count > 0
+        res = ophotos.first.image.thumb_sm
+      end
+      res
+    end
+
   end
 
 end

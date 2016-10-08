@@ -1,0 +1,61 @@
+div.offer_list_iconed {
+
+  ul {
+    margin:0;
+    padding:0;
+    list-style: none;
+
+    li {
+
+      /* иконка категории в ссылке */
+      a.lazy-image-wrapper {
+        overflow: hidden;
+        float: left;
+        clear: left;
+
+        img {
+          max-width: 100%;
+          width: 100%;
+        }
+
+      }
+
+      /* название категории */
+      a.title {
+        display: inline-block;
+        float: left;
+        clear: right;
+      }
+
+    }
+
+  }
+
+  &.style_photostudio {
+
+    ul {
+
+
+      li {
+
+        /* иконка категории в ссылке */
+        a.lazy-image-wrapper {
+          margin-bottom: 5px;
+          img {
+
+          }
+
+        }
+
+        /* название категории */
+        a.title {
+          padding-left: 15px;
+        }
+
+      }
+
+    }
+
+  }
+
+}
