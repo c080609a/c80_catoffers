@@ -1,0 +1,28 @@
+<%# выдать текстовый список предложений, сгруппированный по категориям %>
+<div class="offer_list_grouped">
+
+  <ul>
+    <% list.each do |obj| %> <%# obj: {cat,offers} %>
+
+        <% if obj[:cat_title].present? %>
+            <li>
+                <h5><%= obj[:cat_title] %></h5>
+                <ul>
+                  <% obj[:offers].each do |offer| %>
+                      <li>
+                        <%= link_to offer.title, my_url_for_offer(offer), title: offer.title %>
+                      </li>
+                  <% end %>
+                </ul>
+            </li>
+        <% else %>
+          <% obj[:offers].each do |offer| %>
+              <li>
+                <%= link_to offer.title, my_url_for_offer(offer), title: offer.title %>
+              </li>
+          <% end %>
+        <% end %>
+    <% end %>
+  </ul>
+
+</div>

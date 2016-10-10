@@ -22,7 +22,10 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```scss
+@import "c80_catoffers";
+@import "c80_catoffers_backend";
+```
 
 ## Development
 

@@ -13,6 +13,7 @@ module C80Catoffers
     scope :def_order, -> {order(:created_at => :desc)}
 
     has_and_belongs_to_many :categories
+    has_and_belongs_to_many :props
 
     extend FriendlyId
     friendly_id :title, use: :slugged
@@ -32,6 +33,26 @@ module C80Catoffers
       res = nil
       if self.has_category?
         res = self.categories.first
+      end
+      res
+    end
+
+    # добавил возможность получить предложения, которым не назначена категория
+    def self.without_category
+      habtm_table = Arel::Table.new(:c80_catoffers_categories_offers)
+      join_table_with_condition = habtm_table.project(habtm_table[:offer_id])
+      where(Offer.arel_table[:id].not_in(join_table_with_condition))
+    end
+
+    # выдать список тех предложений, которые должны выводиться в виджете
+    def self.all_widgeted
+      self.joins(:props)
+    end
+
+    def ophoto_thumb_sm
+      res = ''
+      if ophotos.count > 0
+        res = ophotos.first.image.thumb_sm
       end
       res
     end

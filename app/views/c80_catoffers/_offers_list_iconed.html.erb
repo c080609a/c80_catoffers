@@ -1,0 +1,23 @@
+<%# выдать линейный список предложений с иконками %>
+<div class="offer_list_iconed clearfix list_count_<%=list.count%> <%= css_style_for_block %>">
+
+  <ul class="clearfix">
+    <% list.each do |offer| %>
+        <li class="clearfix">
+          <% Rails.logger.debug "[TRACE] #{offer}" %>
+          <%= render_image_link_lazy({
+                                             :alt_image => offer.title,
+                                             :image => offer.ophoto_thumb_sm,
+                                             :a_href => my_url_for_offer(offer),
+                                             :a_class => '',
+                                             :a_css_style => css_for_a,
+                                             :a_rel => 'nofollow'
+                                     }) %>
+
+          <%= link_to offer.title, my_url_for_offer(offer), title: offer.title, style: css_for_title, class: 'title' %>
+
+        </li>
+    <% end %>
+  </ul>
+
+</div>

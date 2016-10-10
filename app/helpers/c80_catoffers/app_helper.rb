@@ -25,10 +25,67 @@ module C80Catoffers
 
       offers = C80Catoffers::Offer.joins(:categories).where(:c80_catoffers_categories => {:slug => category_tag})
 
-      render :partial => 'c80_catoffers/offers_list',
+      render :partial => 'c80_catoffers/offers_list_by_cat',
              :locals => {
                  list: offers
              }
+
+    end
+
+    def render_offers_list_grouped
+
+      # результат соберём тут
+      res = []
+
+      # сначала выведем предложения без категории
+      res << { cat_title: nil, offers: Offer.without_category }
+
+      # затем выведем предложения с категориями
+      Category.all.each do |cat|
+        res << { cat_title: cat.title, offers: cat.offers }
+      end
+
+      render :partial => 'c80_catoffers/offers_list_grouped',
+             :locals => {
+                 list: res
+             }
+
+    end
+
+    # выведем линейный список категорий с иконками
+    def render_offers_list_iconed(css_style:'default')
+
+      # свойства модуля
+      p = Prop.first
+
+      # список категорий, которые надо вывести в виджете
+      list = Offer.all_widgeted.def_order
+
+      # сколько должно быть позиций?
+      positions_count = p.positions_count
+      # Rails.logger.debug "[TRACE] positions_count: #{positions_count}; list.count: #{list.count}"
+
+      # если всего в списке меньше, чем надо - добьём список слотами
+      if list.count < positions_count
+        delta = positions_count - list.count
+        delta.times do |i|
+          # Rails.logger.debug "[TRACE] Offer.new"
+          list << Offer.new({ title: '' })
+        end
+      end
+
+      # чтобы вёрстка не прыгала - зафиксируем размер картинки
+      w = p.thumb_sm_width
+      h = p.thumb_sm_height
+
+      render :partial => 'c80_catoffers/offers_list_iconed',
+             :locals => {
+                 list: list,
+                 css_style_for_block: css_style,
+                 css_for_a: "width:#{w}px;height:#{h}px",
+                 css_for_title: "height:#{h}px;line-height:#{h}px"
+             }
+
 
     end
 

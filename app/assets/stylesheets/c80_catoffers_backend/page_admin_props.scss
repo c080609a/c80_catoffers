@@ -1,0 +1,19 @@
+body.admin_props {
+
+  &.index {
+    .action_items {
+      display: none !important;
+    }
+    a.delete_link {
+      display: none !important;
+    }
+    a.view_link {
+      display: none !important;
+    }
+  }
+
+  &.edit {
+
+  }
+
+}
