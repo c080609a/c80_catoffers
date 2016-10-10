@@ -6,18 +6,24 @@ module C80Catoffers
     process :resize_to_limit => [1024,768]
 
     version :thumb_big_one do
-      p = C80Catoffers::Prop.first
-      process :resize_to_fill => [p.big_one_width, p.big_one_height]
+      Proc.new {
+        p = C80Catoffers::Prop.first
+        process :resize_to_fill => [p.big_one_width, p.big_one_height]
+      }
     end
 
     version :thumb_preview do
-      p = C80Catoffers::Prop.first
-      process :resize_to_fill => [p.preview_width, p.preview_height]
+      Proc.new {
+        p = C80Catoffers::Prop.first
+        process :resize_to_fill => [p.preview_width, p.preview_height]
+      }
     end
 
     version :thumb_sm do
-      p = C80Catoffers::Prop.first
-      process :resize_to_fill => [p.thumb_sm_width, p.thumb_sm_height]
+      Proc.new {
+        p = C80Catoffers::Prop.first
+        process :resize_to_fill => [p.thumb_sm_width, p.thumb_sm_height]
+      }
     end
 
     def store_dir
