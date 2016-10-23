@@ -49,10 +49,21 @@ module C80Catoffers
       self.joins(:props)
     end
 
+    # NOTE:: пока используется в list_iconed, устарел, т.к. появился ophoto_thumb
     def ophoto_thumb_sm
       res = ''
       if ophotos.count > 0
         res = ophotos.first.image.thumb_sm
+      end
+      res
+    end
+
+    # выдать обложку предложения указанного размера
+    # используется, например, при формировании списка предложений с картинками в виджете
+    def ophoto_thumb(thumb_size='thumb_sm')
+      res = ''
+      if ophotos.count > 0
+        res = ophotos.first.image_thumb(thumb_size)
       end
       res
     end
