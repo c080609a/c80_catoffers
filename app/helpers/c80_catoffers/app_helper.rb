@@ -52,8 +52,21 @@ module C80Catoffers
 
     end
 
+    ##
     # выведем линейный список категорий с иконками
-    def render_offers_list_iconed(css_style:'default')
+    #
+    # состав view:
+    #   иконка
+    #   кликабельное название
+    #
+    # параметрами можно добавить css стиль и указать размер иконки
+    #
+    # порядок элементов - определяется Offer.all_widgeted.def_order
+    # количество позиций - фиксированно: Prop.positions_count
+    #
+    # css class: offer_list_iconed
+
+    def render_offers_list_iconed(css_style:'default', thumb_size:'thumb_sm')
 
       # свойства модуля
       p = Prop.first
@@ -75,8 +88,8 @@ module C80Catoffers
       end
 
       # чтобы вёрстка не прыгала - зафиксируем размер картинки
-      w = p.thumb_sm_width
-      h = p.thumb_sm_height
+      w = p.call("#{thumb_size}_width") #.thumb_sm_width
+      h = p.call("#{thumb_size}_height") #.thumb_sm_height
 
       render :partial => 'c80_catoffers/offers_list_iconed',
              :locals => {
