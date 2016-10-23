@@ -88,8 +88,8 @@ module C80Catoffers
       end
 
       # чтобы вёрстка не прыгала - зафиксируем размер картинки
-      w = p.call("#{thumb_size}_width") #.thumb_sm_width
-      h = p.call("#{thumb_size}_height") #.thumb_sm_height
+      w = p.send("#{thumb_size}_width") #.thumb_sm_width
+      h = p.send("#{thumb_size}_height") #.thumb_sm_height
 
       render :partial => 'c80_catoffers/offers_list_iconed',
              :locals => {
