@@ -40,7 +40,7 @@
 
             <%# остальные свойства выводим стопкой именованных дивов %>
             <% else %>
-                      <div class="<%= "#{prop_name} #{prop_name_counter_class}" %>">
+                      <div class="<%= "#{prop_name} #{prop_name_counter_class}" %>" style="<%= css_for_title %>">
                         <%= list_of_values_lists[offer_index][prop_index] %> <%# NOTE:: извлекаем значение prop_index-свойства для offer_index-предложения %>
                       </div>
             <% end %>
