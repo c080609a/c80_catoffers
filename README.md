@@ -9,9 +9,10 @@ TODO: Delete this and the text above, and describe your gem
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'c80_lazy_images', '0.1.0'
-gem 'c80_catoffers'
+    gem 'c80_lazy_images', '0.1.0'
+    gem 'c80_catoffers'
 ```
+
 ```scss
     @import "c80_catoffers";
     @import "c80_catoffers_backend";
