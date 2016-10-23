@@ -9,9 +9,6 @@ div.offer_list_iconed {
 
       /* иконка категории в ссылке */
       a.lazy-image-wrapper {
-        overflow: hidden;
-        float: left;
-        clear: left;
 
         img {
           max-width: 100%;
@@ -23,14 +20,16 @@ div.offer_list_iconed {
       /* название категории */
       a.title {
         display: inline-block;
-        float: left;
-        clear: right;
+
       }
 
     }
 
   }
 
+  /**
+  иконка слева, надпись справа
+  */
   &.style_photostudio {
 
     ul {
@@ -41,6 +40,9 @@ div.offer_list_iconed {
 
         /* иконка категории в ссылке */
         a.lazy-image-wrapper {
+          overflow: hidden;
+          float: left;
+          clear: left;
 
           img {
 
@@ -52,6 +54,8 @@ div.offer_list_iconed {
         a.title {
           padding-left: 15px;
           width: calc(100% - 80px);
+          float: left;
+          clear: right;
         }
 
       }
