@@ -1,0 +1,21 @@
+div.offer_list_iconed_columns {
+
+  div.column {
+    float: left;
+
+    ul {
+      margin:0;
+      padding:0;
+      list-style: none;
+
+      li {
+        @include default_li_iconed;
+        width: 100%;
+        margin-bottom: 8px;
+      }
+
+    }
+
+  }
+
+}

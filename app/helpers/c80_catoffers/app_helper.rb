@@ -32,6 +32,52 @@ module C80Catoffers
 
     end
 
+    def render_offers_list_by_cat_iconed(category_tag, css_class_for_wrapper='default', thumb_size='thumb_sm')
+
+      offers = C80Catoffers::Offer.joins(:categories).where(:c80_catoffers_categories => {:slug => category_tag})
+
+      # выведем в 4 столбца
+      cols_count = 4
+      n = offers.count / cols_count+1
+
+      # соберём в этом массиве массивов
+      a = []
+
+      # создадим подмассивы
+      cols_count.times do |i|
+        a << []
+      end
+
+      # указатель на заполняемый подмассив
+      k = 0
+
+      # обойдём все предложения
+      offers.all.each_with_index do |offer, i|
+        Rails.logger.debug "[TRACE] offer_id = #{offer.id} in k=#{k} sub-array."
+        a[k] << offer
+        if i % n == 0 && i != 0 && k <= cols_count
+          k += 1
+          Rails.logger.debug "[TRACE] k++: #{k}"
+        end
+      end
+
+      # чтобы вёрстка не прыгала - зафиксируем размер картинки
+      css_wh = _calc_css_for_list_iconed(thumb_size)
+
+      #
+      css_for_column = "width:#{100/cols_count}%"
+
+      render :partial => 'c80_catoffers/offers_list_iconed_columns',
+             :locals => {
+                 list: a,
+                 wrapper_div_class: "offer_list_iconed_columns clearfix cols_count_#{cols_count} #{css_class_for_wrapper}",
+                 css_for_column: css_for_column,
+                 css_for_a: css_wh[:a_lazy_wrapper],
+                 css_for_title: css_wh[:title]
+             }
+
+    end
+
     def render_offers_list_grouped
 
       # результат соберём тут

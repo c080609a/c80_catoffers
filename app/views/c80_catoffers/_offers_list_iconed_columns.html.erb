@@ -1,0 +1,29 @@
+<%# выдать линейный список предложений с иконками СТОЛБЦАМИ %>
+<div class='<%= wrapper_div_class %>'>
+
+  <% list.each_with_index do |list_in_column, i| %>
+
+    <div class="column_<%= i %> clearfix column" style="<%= css_for_column %>">
+      <ul>
+
+        <% list_in_column.each do |offer|%>
+            <li class="clearfix">
+              <%= render_image_link_lazy({
+                                                 :alt_image => offer.title,
+                                                 :image => offer.ophoto_thumb,
+                                                 :a_href => my_url_for_offer(offer),
+                                                 :a_class => '',
+                                                 :a_css_style => css_for_a,
+                                                 :a_rel => 'nofollow'
+                                         }) %>
+
+              <%= link_to offer.title, my_url_for_offer(offer), title: offer.title, style: css_for_title, class: 'title' %>
+            </li>
+        <% end %>
+
+      </ul>
+    </div>
+
+  <% end %>
+
+</div>

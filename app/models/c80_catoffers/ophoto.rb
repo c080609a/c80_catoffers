@@ -8,7 +8,7 @@ module C80Catoffers
     def image_thumb(thumb_size)
       res = ''
       if image.present?
-        res = image.send("thumb_#{thumb_size}")
+        res = image.send("#{thumb_size}")
       end
     end
 
