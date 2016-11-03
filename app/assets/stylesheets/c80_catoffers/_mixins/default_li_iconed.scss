@@ -1,0 +1,31 @@
+/*NOTE:: подразумевается дефолтное использование с thumb_sm */
+
+@mixin default_li_iconed {
+  margin-bottom: 15px;
+
+  /* иконка категории в ссылке */
+  a.lazy-image-wrapper {
+    overflow: hidden;
+    float: left;
+    clear: left;
+
+    img {
+      max-width: 100%;
+      width: 100%;
+
+    }
+
+  }
+
+  /* название категории */
+  a.title {
+    padding-left: 10px;
+    display: inline-block;
+    float: left;
+    clear: right;
+    width: calc(100% - 80px); /*NOTE:: подразумевается дефолтное использование с thumb_sm */
+    overflow: hidden;
+
+  }
+
+}

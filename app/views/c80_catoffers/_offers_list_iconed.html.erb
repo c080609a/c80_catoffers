@@ -4,10 +4,10 @@
   <ul class="clearfix">
     <% list.each do |offer| %>
         <li class="clearfix">
-          <% Rails.logger.debug "[TRACE] #{offer}" %>
+          <%# Rails.logger.debug "[TRACE] #{offer}" %>
           <%= render_image_link_lazy({
                                              :alt_image => offer.title,
-                                             :image => offer.ophoto_thumb_sm,
+                                             :image => offer.ophoto_thumb,
                                              :a_href => my_url_for_offer(offer),
                                              :a_class => '',
                                              :a_css_style => css_for_a,

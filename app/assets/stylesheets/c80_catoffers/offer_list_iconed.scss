@@ -6,6 +6,7 @@ div.offer_list_iconed {
     list-style: none;
 
     li {
+      margin-bottom: 15px;
 
       /* иконка категории в ссылке */
       a.lazy-image-wrapper {
@@ -16,43 +17,18 @@ div.offer_list_iconed {
         img {
           max-width: 100%;
           width: 100%;
+
         }
 
       }
 
       /* название категории */
       a.title {
+        padding-left: 10px;
         display: inline-block;
         float: left;
         clear: right;
-      }
-
-    }
-
-  }
-
-  &.style_photostudio {
-
-    ul {
-
-
-      li {
-        margin-bottom: 13px;
-
-        /* иконка категории в ссылке */
-        a.lazy-image-wrapper {
-
-          img {
-
-          }
-
-        }
-
-        /* название категории */
-        a.title {
-          padding-left: 15px;
-          width: calc(100% - 80px);
-        }
+        width: calc(100% - 80px); /*NOTE:: подразумевается дефолтное использование с thumb_sm */
 
       }
 
@@ -65,10 +41,10 @@ div.offer_list_iconed {
     ul {
 
       li {
-        background-color: #dfffe4;
+        /*background-color: #dfffe4;*/
 
         a.lazy-image-wrapper {
-          background-color: #e2dfff !important;
+          background-color: #F8F8F8 !important;
         }
 
       }

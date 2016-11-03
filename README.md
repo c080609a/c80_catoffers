@@ -9,36 +9,28 @@ TODO: Delete this and the text above, and describe your gem
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'c80_catoffers'
+    gem 'c80_lazy_images', '0.1.0'
+    gem 'c80_catoffers'
 ```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install c80_catoffers
-
-## Usage
 
 ```scss
-@import "c80_catoffers";
-@import "c80_catoffers_backend";
+    @import "c80_catoffers";
+    @import "c80_catoffers_backend";
 ```
 
-## Development
+Host app's `application_controller.rb`:
+```
+      helper C80LazyImages::Engine.helpers
+      helper C80Catoffers::Engine.helpers
+```
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+## Usage: helpers
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```
+render_offer_full_desc(offer_tag)
+render_offers_list_by_cat(category_tag)
+render_offers_list_grouped
+render_offers_list_iconed(css_style:'default', thumb_size:'thumb_sm')
 
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/c80_catoffers. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+```
 

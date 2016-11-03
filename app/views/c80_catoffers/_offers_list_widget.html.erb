@@ -1,0 +1,56 @@
+<%  # выдать линейный слотованный список предложений, каждое предложение
+    # в списке представить в виде блока с указанным списком свойств +list_props+
+%>
+
+<div class="offer_list_widget clearfix list_count_<%= list_offers.count %> <%= css_style_for_block %>">
+
+  <ul class="clearfix">
+
+    <%# перебираем предложения, формируем список %>
+    <% list_offers.each_with_index do |offer, offer_index| %>
+        <li class="clearfix">
+
+        <%# перебираем все имена свойств и для каждого предложения строим список %>
+        <% list_props.each_with_index do |prop_name, prop_index| %>
+
+            <%# ради возможных стилизаций будем вести счетчик и впишем его в класс каждого блока свойства %>
+            <% prop_name_counter_class = "pr_#{prop_index}" %>
+
+            <%# NOTE:: переберём имена свойств и под каждое применим свои правила форматирования %>
+
+            <%# обложку предложения помещаем в ссылку и делаем lazy %>
+            <% if prop_name['thumb'].present? %>
+                <%= render_image_link_lazy({
+                                                   :alt_image => offer.title,
+                                                   :image => offer.ophoto_thumb(prop_name), # prop_name = thumb_sm, например
+                                                   :a_href => my_url_for_offer(offer),
+                                                   :a_class => prop_name_counter_class,
+                                                   :a_css_style => css_for_a,
+                                                   :a_rel => 'nofollow'
+                                           }) %>
+
+            <%# название обложки делаем кликабельным %>
+            <% elsif prop_name['title'].present? %>
+                  <%= link_to offer.title,
+                              my_url_for_offer(offer),
+                              title: offer.title,
+                              style: css_for_title,
+                              class: "title #{prop_name_counter_class}"
+                  %>
+
+            <%# остальные свойства выводим стопкой именованных дивов %>
+            <% else %>
+                      <div class="<%= "#{prop_name} #{prop_name_counter_class}" %>" style="<%= css_for_title %>">
+                        <%= list_of_values_lists[offer_index][prop_index] %> <%# NOTE:: извлекаем значение prop_index-свойства для offer_index-предложения %>
+                      </div>
+            <% end %>
+
+            <%# NOTE:: закончили перебирать имена свойств %>
+
+        <% end %>
+
+        </li>
+    <% end %>
+  </ul>
+
+</div>

@@ -26,6 +26,20 @@ module C80Catoffers
       }
     end
 
+    version :thumb_md do
+      Proc.new {
+        p = C80Catoffers::Prop.first
+        process :resize_to_fill => [p.thumb_md_width, p.thumb_md_height]
+      }
+    end
+
+    version :thumb_lg do
+      Proc.new {
+        p = C80Catoffers::Prop.first
+        process :resize_to_fill => [p.thumb_lg_width, p.thumb_lg_height]
+      }
+    end
+
     def store_dir
       'uploads/oimages'
     end
