@@ -2,6 +2,10 @@
     # в списке представить в виде блока с указанным списком свойств +list_props+
 %>
 
+<% if h3_title.present? %>
+    <h3><%= h3_title %></h3>
+<% end %>
+
 <div class="offer_list_widget clearfix list_count_<%= list_offers.count %> <%= css_style_for_block %>">
 
   <ul class="clearfix">

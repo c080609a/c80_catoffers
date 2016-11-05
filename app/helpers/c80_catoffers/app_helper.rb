@@ -138,7 +138,13 @@ module C80Catoffers
     # Построить линейный слотованный список предложений, каждое предложение
     # в списке и представить в виде блока с указанным ВЕРТИКАЛЬНЫМ списком свойств +list_of_props+
     #
-    def render_offers_widget(p_list_of_props, style='default', thumb_size='thumb_md')
+    def render_offers_widget(p_list_of_props, style='default', thumb_size='thumb_md', h3_title=' ')
+
+      # Rails.logger.debug "[TRACE] h3_title = '#{h3_title}'"
+
+      if h3_title == ' '
+        h3_title = I18n.t('c80_catoffers.offer_list_widget.h3_title')
+      end
 
       # соберём слотованный список предложений
       list_offers = _get_widgeted_offers_with_slots
@@ -159,16 +165,20 @@ module C80Catoffers
 
       render :partial => 'c80_catoffers/offers_list_widget',
              :locals => {
-                 list_props: p_list_of_props,
-                 css_style_for_block: style,
-                 list_offers: list_offers,
-                 list_of_values_lists: list_of_values,
-                 css_for_a: css_wh[:a_lazy_wrapper],
-                 css_for_title: css_wh[:title]
+                 list_props:            p_list_of_props,
+                 css_style_for_block:   style,
+                 list_offers:           list_offers,
+                 list_of_values_lists:  list_of_values,
+                 css_for_a:             css_wh[:a_lazy_wrapper],
+                 css_for_title:         css_wh[:title],
+                 h3_title:              h3_title
              }
 
     end
 
+    ## Потроить ajax-линейный список Предложений [на странице "наши услуги", например]
+    # каждое предложение
+    # в списке и представить в виде блока с указанным ВЕРТИКАЛЬНЫМ списком свойств +p_list_of_props+
     def render_offers_page(p_list_of_props, style='default', thumb_size='thumb_md', page=1)
 
       per_page = Prop.first.per_page
@@ -191,7 +201,7 @@ module C80Catoffers
       # чтобы вёрстка не прыгала - зафиксируем размер картинки
       css_wh = _calc_css_for_list_widget(thumb_size)
 
-      render :partial => 'c80_catoffers/offers_list_widget',
+      render :partial => 'c80_catoffers/offers_page',
              :locals => {
                  list_props: p_list_of_props,
                  css_style_for_block: style,
