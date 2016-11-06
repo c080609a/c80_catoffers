@@ -7,18 +7,23 @@ var fOffersdoAjaxRequest;
 var fOffersProccessPaginateLinks;
 var fOffersStartWillPaginateAjax;
 
+var fOffersGetBlock;
+var fOffersGetWillPaginateLinks;
+
 $(function () {
 
-   console.log('<offers_ajax>');
+   //console.log('<offers_ajax>');
 
-   var fOffersGetBlock = function () {
+   // соберём в одном месте обращения к узлам DOM, с которыми будем работать
+   fOffersGetBlock = function () {
        return $('.ajax_div_offers');
    };
 
-   var fOffersGetWillPaginateLinks = function () {
+   fOffersGetWillPaginateLinks = function () {
        return fOffersGetBlock().find(".div_will_paginate a");
    };
-    
+
+   // надо ли вообще что либо делать?
    if (fOffersGetBlock().length) {
 
        fOffersBindHistoryAdapter = function () {
