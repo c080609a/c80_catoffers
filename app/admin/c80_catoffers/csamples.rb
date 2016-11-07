@@ -3,7 +3,7 @@ ActiveAdmin.register C80Catoffers::Csample, as: 'Csample' do
   config.per_page = 100
 
   menu :label => 'Рассчёт стоимости', # TODO_MY:: название пункта меню перенесести в параметры в базу
-       priority: 2,
+       priority: 4,
        parent: 'Услуги' # TODO_MY:: название пункта меню перенесести в параметры в базу
 
   permit_params :title,
