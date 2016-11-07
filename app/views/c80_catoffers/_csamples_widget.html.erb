@@ -1,0 +1,36 @@
+<div class="csamples_widget clearfix">
+  <% list.each_with_index do |csample, i| %>
+      <% aux_css = aux_css_list[i] %>
+
+      <div class="csample">
+
+        <div class="csphoto">
+          <%= render_image_link_lazy({
+                                             :alt_image     => csample.title,
+                                             :image         => csample.csphoto,
+                                             :a_href        => '',
+                                             :a_class       => '',
+                                             :a_css_style   => aux_css[:a_lazy_wrapper],
+                                             :a_rel         => 'nofollow'
+                                     }) %>
+        </div>
+
+        <div class="offers">
+          <ul>
+            <% csample.crows.each do |crow| %>
+            <li>
+              <%= crow.offer_title %> - <%= crow.offer_price_integer %> р.
+            </li>
+            <% end %>
+          </ul>
+        </div>
+
+        <div class="summ_price">
+          <span class="dt">Итого:</span>
+          <span class="dd"><%= csample.summ_price %></span> руб.
+        </div>
+
+      </div>
+
+  <% end %>
+</div>
