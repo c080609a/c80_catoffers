@@ -15,6 +15,8 @@ module C80Catoffers
     has_and_belongs_to_many :categories
     has_and_belongs_to_many :props
 
+    has_many :crows, :dependent => :destroy
+
     extend FriendlyId
     friendly_id :title, use: :slugged
     def normalize_friendly_id(input)
@@ -66,6 +68,11 @@ module C80Catoffers
         res = ophotos.first.image_thumb(thumb_size)
       end
       res
+    end
+
+    def price_integer
+      d = self.price.match '\d+'
+      d.present? ? d[0].to_i : 0
     end
 
   end
