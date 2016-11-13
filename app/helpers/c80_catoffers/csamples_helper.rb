@@ -39,7 +39,8 @@ module C80Catoffers
       end
 
       res = {
-          :a_lazy_wrapper => "width:#{w}px;height:#{h}px"
+          :a_lazy_wrapper => "width:#{w}px;height:#{h}px",
+          :common_width => "width:#{w}px;"
       }
 
       # Rails.logger.debug "[TRACE] <_calc_css_for_list_iconed> #{res}"
