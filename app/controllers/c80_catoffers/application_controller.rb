@@ -15,5 +15,11 @@ module C80Catoffers
 
     end
 
+    def price_me
+      respond_to do |format|
+        format.js
+      end
+    end
+
   end
 end
