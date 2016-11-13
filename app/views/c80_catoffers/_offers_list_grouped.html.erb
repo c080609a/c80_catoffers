@@ -11,14 +11,17 @@
                   <% obj[:offers].each do |offer| %>
                       <li>
                         <%= link_to offer.title, my_url_for_offer(offer), title: offer.title %>
+                        <div class="offer_price"><%= offer.price %></div>
                       </li>
                   <% end %>
                 </ul>
             </li>
         <% else %>
-          <% obj[:offers].each do |offer| %>
-              <li>
+          <% obj[:offers].each_with_index do |offer, index| %>
+              <% k = index % 2 == 0 ? 'odd':'even' %>
+              <li class="<%=k%>">
                 <%= link_to offer.title, my_url_for_offer(offer), title: offer.title %>
+                <div class="offer_price"><%= offer.price %></div>
               </li>
           <% end %>
         <% end %>
