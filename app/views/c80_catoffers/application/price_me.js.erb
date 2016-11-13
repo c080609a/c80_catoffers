@@ -1,0 +1,19 @@
+
+var $body = $('body');
+
+// вставим окно
+var html_str = "<%= j render_popup_price %>";
+var $m = $(html_str);
+$body.append($m);
+
+// покажем окно
+$('#c80_catoffers_bs_modal').modal('show');
+
+// настроим форму
+//var $form = $("form#form_feedback");
+//
+//$form.bind("ajax:error", function (event, data, status, xhr) {
+//    $form.render_form_errors($.parseJSON(data.responseText));
+//});
+//
+//$form.modal_success();
