@@ -4,7 +4,7 @@
 
   div.left {
     float: left;
-    /* ширина и высота задаётся с помощью custom css в хост приложении */
+    width: 621px;
 
     /* скроем навигационную галерею, если в ней один элемент */
     div.bottom {
@@ -18,7 +18,8 @@
 
   div.right {
     float: left;
-    /* ширина и высота задаётся с помощью custom css в хост приложении */
+    width: calc(100% - 621px);
+    padding-left: 40px;
   }
 
 }
