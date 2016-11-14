@@ -13,5 +13,6 @@ C80Catoffers::Prop.create!({
                                thumb_md_height: 160,     # NOTE:: просто стандартный размер
                                thumb_lg_width:  1000,     # NOTE:: просто стандартный размер
                                thumb_lg_height: 550,    # NOTE:: просто стандартный размер
-                               positions_count: 4
+                               positions_count: 4,
+                               per_page:        6       # сколько Предложений вывести в хелпере render_offers_page
                            })

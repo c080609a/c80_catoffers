@@ -1,13 +1,17 @@
 module C80Catoffers
   module UrlsHelper
 
+    def root_url_fake
+      '/'
+    end
+
     def my_url_for_offer(offer)
 
       s = ''
       if offer.has_category?
-        s = "#{root_url}#{offer.category.slug}/#{offer.slug}"
+        s = "#{root_url_fake}#{offer.category.slug}/#{offer.slug}"
       else
-        s = "#{root_url}offers/#{offer.slug}" # TODO_MY:: хардкод в урле [аналогично в routes.rb]
+        s = "#{root_url_fake}offers/#{offer.slug}" # TODO_MY:: хардкод в урле [аналогично в routes.rb]
       end
 
       s
@@ -15,7 +19,7 @@ module C80Catoffers
     end
 
     def my_url_for_category(category)
-      "#{root_url}categories/#{category.slug}"
+      "#{root_url_fake}categories/#{category.slug}"
     end
 
   end

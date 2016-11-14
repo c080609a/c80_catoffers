@@ -44,7 +44,7 @@ module C80Catoffers
       a = []
 
       # создадим подмассивы
-      cols_count.times do |i|
+      cols_count.times do
         a << []
       end
 
@@ -115,7 +115,7 @@ module C80Catoffers
       # Rails.logger.debug "[TRACE] <render_offers_list_iconed>"
 
       # свойства модуля
-      p = Prop.first
+      # p = Prop.first
 
       # список категорий, которые надо вывести в виджете (со слотами)
       list = _get_widgeted_offers_with_slots
@@ -138,7 +138,13 @@ module C80Catoffers
     # Построить линейный слотованный список предложений, каждое предложение
     # в списке и представить в виде блока с указанным ВЕРТИКАЛЬНЫМ списком свойств +list_of_props+
     #
-    def render_offers_widget(p_list_of_props, style='default', thumb_size='thumb_md')
+    def render_offers_widget(p_list_of_props, style='default', thumb_size='thumb_md', h3_title=' ')
+
+      # Rails.logger.debug "[TRACE] h3_title = '#{h3_title}'"
+
+      if h3_title == ' '
+        h3_title = I18n.t('c80_catoffers.offer_list_widget.h3_title')
+      end
 
       # соберём слотованный список предложений
       list_offers = _get_widgeted_offers_with_slots
@@ -159,6 +165,44 @@ module C80Catoffers
 
       render :partial => 'c80_catoffers/offers_list_widget',
              :locals => {
+                 list_props:            p_list_of_props,
+                 css_style_for_block:   style,
+                 list_offers:           list_offers,
+                 list_of_values_lists:  list_of_values,
+                 css_for_a:             css_wh[:a_lazy_wrapper],
+                 css_for_title:         css_wh[:title],
+                 h3_title:              h3_title
+             }
+
+    end
+
+    ## Потроить ajax-линейный список Предложений [на странице "наши услуги", например]
+    # каждое предложение
+    # в списке и представить в виде блока с указанным ВЕРТИКАЛЬНЫМ списком свойств +p_list_of_props+
+    def render_offers_page(p_list_of_props, style='default', thumb_size='thumb_md', page=1)
+
+      per_page = Prop.first.per_page
+
+      #
+      list_offers = C80Catoffers::Offer.paginate(:page => page, :per_page => per_page)
+
+      # релевантный список списков значений указанных характеристик слотованного списка предложений
+      list_of_values = []
+
+      # обойдём список Предложений и для каждого Предложения соберём релевантный список значений свойств
+      list_offers.each do |offer|
+
+        # соберём и обработаем значения нужных характеристик каждого Предложения
+        vals = _proccess_list_of_props(p_list_of_props, offer)
+        list_of_values << vals
+
+      end
+
+      # чтобы вёрстка не прыгала - зафиксируем размер картинки
+      css_wh = _calc_css_for_list_widget(thumb_size)
+
+      render :partial => 'c80_catoffers/offers_page',
+             :locals => {
                  list_props: p_list_of_props,
                  css_style_for_block: style,
                  list_offers: list_offers,
@@ -166,7 +210,6 @@ module C80Catoffers
                  css_for_a: css_wh[:a_lazy_wrapper],
                  css_for_title: css_wh[:title]
              }
-
     end
 
   end

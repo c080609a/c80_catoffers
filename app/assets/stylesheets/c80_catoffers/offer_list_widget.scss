@@ -1,28 +1,32 @@
-div.offer_list_widget {
+.offer_list_widget_wrapper {
+  clear: both;
 
-  ul {
+  div.offer_list_widget {
 
-    margin:0;
-    padding:0;
-    list-style: none;
+    ul {
 
-    > li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
 
-      float:left;
-      display: inline-block;
-      margin-right: 15px;
+      > li {
 
-      > * {
         float: left;
-        clear: both;
-      }
+        display: inline-block;
+        margin-right: 15px;
 
-      a.lazy-image-wrapper {
-        background-color: #F8F8F8 !important;
+        > * {
+          float: left;
+          clear: both;
+        }
+
+        a.lazy-image-wrapper {
+          background-color: #F8F8F8 !important;
+        }
+
       }
 
     }
 
   }
-
 }

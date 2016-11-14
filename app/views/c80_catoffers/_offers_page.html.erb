@@ -1,0 +1,23 @@
+<% # Нарисовать страницу просмотра всех Предложений.
+   #
+%>
+
+<div class="ajax_div_offers offers_page <%= css_style_for_block %>" data-css_class_offers_block="<%= css_style_for_block %>">
+
+  <%= render :partial => 'c80_catoffers/offers_list_widget',
+             :locals => {
+                     list_props:            list_props,
+                     css_style_for_block:   css_style_for_block,
+                     list_offers:           list_offers,
+                     list_of_values_lists:  list_of_values_lists,
+                     css_for_a:             css_for_a,
+                     css_for_title:         css_for_title,
+                     h3_title:              nil
+             }
+  %>
+
+  <div class="div_will_paginate">
+    <%= will_paginate list_offers %>
+  </div>
+
+</div>

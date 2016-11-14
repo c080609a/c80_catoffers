@@ -1,0 +1,10 @@
+<%# TODO:: убрать временный хардкод %w(thumb_md title price) %>
+var html_str = "<%= j render_offers_page(%w(thumb_md title price), 'sokol', 'thumb_md', params[:page]) %>";
+
+var $aa = fOffersGetBlock();
+$aa.replaceWith(html_str);
+
+Holder.run($aa.find("img"));
+fLazyStart();
+
+fOffersProccessPaginateLinks();
