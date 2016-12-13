@@ -5,6 +5,8 @@ module C80Catoffers
 
     helper C80LazyImages::Engine.helpers
 
+    protect_from_forgery with: :exception
+
     def offers_guru
       respond_to do |format|
         format.js
