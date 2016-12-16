@@ -1,6 +1,7 @@
 require "babosa"
 
 module C80Catoffers
+  
   class Offer < ActiveRecord::Base
 
     has_many :ophotos, :dependent => :destroy
@@ -12,9 +13,13 @@ module C80Catoffers
 
     scope :def_order, -> {order(:created_at => :desc)}
 
+    after_update :recalc_parent_sample_price
+    after_create :recalc_parent_sample_price    
+    
     has_and_belongs_to_many :categories
     has_and_belongs_to_many :props
 
+    # один Offer может соответствовать нескольким Строкам
     has_many :crows, :dependent => :destroy
 
     extend FriendlyId
@@ -75,6 +80,20 @@ module C80Catoffers
       d.present? ? d[0].to_i : 0
     end
 
+    def recalc_parent_sample_price
+      # если Пример состоит в Строке
+      if crows.count > 0
+        # переберём его Строки
+        crows.each do |crow|
+          Rails.logger.debug "[TRACE] <Offer.recalc_parent_sample_price> Пересчитать стоимость Примера id=#{crow.csample.id}."
+          # добираемся до Примера, в чьём составе находится Строка, которая "содержит" данное Преложение, и просим его пересчитать цену
+          crow.csample.recalc_summ_price
+        end
+      else
+        Rails.logger.debug '[TRACE] <Offer.recalc_parent_sample_price> У Предложения нет Строк.'
+      end
+    end
+    
   end
 
 end
